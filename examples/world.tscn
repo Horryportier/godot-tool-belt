@@ -1,0 +1,115 @@
+[gd_scene load_steps=17 format=3 uid="uid://eimvfnfdbxj3"]
+
+[ext_resource type="Script" path="res://examples/mouse_radar.gd" id="1_q32aw"]
+[ext_resource type="Script" path="res://Components/radar/radar2d.gd" id="2_hj7h8"]
+[ext_resource type="PackedScene" uid="uid://dda5wwbdnpyw0" path="res://examples/goblin.tscn" id="3_k5j1i"]
+[ext_resource type="Script" path="res://Components/health/health_res.gd" id="4_bvyij"]
+[ext_resource type="Script" path="res://Components/enemy/enemy_res.gd" id="5_7fa8i"]
+
+[sub_resource type="Gradient" id="Gradient_1g0lk"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0265487, 0.40708)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bu56n"]
+gradient = SubResource("Gradient_1g0lk")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4n3p"]
+radius = 16.0
+
+[sub_resource type="Resource" id="Resource_o2yhp"]
+resource_local_to_scene = true
+script = ExtResource("4_bvyij")
+max_hp = 60
+start_hp = 39
+debug = false
+
+[sub_resource type="Resource" id="Resource_xcuxj"]
+resource_local_to_scene = true
+script = ExtResource("5_7fa8i")
+health = SubResource("Resource_o2yhp")
+level = 1
+name = "Goblin"
+groups = Array[String](["Enemy", "Monster", "Humanoid", "Resetable"])
+
+[sub_resource type="Resource" id="Resource_e28o3"]
+resource_local_to_scene = true
+script = ExtResource("4_bvyij")
+max_hp = 60
+start_hp = 39
+debug = false
+
+[sub_resource type="Resource" id="Resource_kehw6"]
+resource_local_to_scene = true
+script = ExtResource("5_7fa8i")
+health = SubResource("Resource_e28o3")
+level = 1
+name = "Goblin"
+groups = Array[String](["Enemy", "Monster", "Humanoid", "Resetable"])
+
+[sub_resource type="Resource" id="Resource_rnom6"]
+resource_local_to_scene = true
+script = ExtResource("4_bvyij")
+max_hp = 60
+start_hp = 39
+debug = false
+
+[sub_resource type="Resource" id="Resource_2f0dl"]
+resource_local_to_scene = true
+script = ExtResource("5_7fa8i")
+health = SubResource("Resource_rnom6")
+level = 1
+name = "Goblin"
+groups = Array[String](["Enemy", "Monster", "Humanoid", "Resetable"])
+
+[sub_resource type="Resource" id="Resource_77ucp"]
+resource_local_to_scene = true
+script = ExtResource("4_bvyij")
+max_hp = 60
+start_hp = 39
+debug = false
+
+[sub_resource type="Resource" id="Resource_aolje"]
+resource_local_to_scene = true
+script = ExtResource("5_7fa8i")
+health = SubResource("Resource_77ucp")
+level = 1
+name = "Goblin"
+groups = Array[String](["Enemy", "Monster", "Humanoid", "Resetable"])
+
+[node name="world" type="Node2D"]
+
+[node name="mouse_radar" type="Node2D" parent="."]
+script = ExtResource("1_q32aw")
+
+[node name="Sprite2D" type="Sprite2D" parent="mouse_radar"]
+texture = SubResource("GradientTexture2D_bu56n")
+
+[node name="Radar2D" type="Area2D" parent="mouse_radar"]
+script = ExtResource("2_hj7h8")
+group = "Enemy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_radar/Radar2D"]
+shape = SubResource("CircleShape2D_g4n3p")
+debug_color = Color(2.83971e-06, 0.64494, 0.270685, 0.42)
+
+[node name="Goblin" parent="." instance=ExtResource("3_k5j1i")]
+position = Vector2(208, -104)
+resource = SubResource("Resource_xcuxj")
+
+[node name="Goblin2" parent="." instance=ExtResource("3_k5j1i")]
+position = Vector2(-256, -72)
+resource = SubResource("Resource_kehw6")
+
+[node name="Goblin3" parent="." instance=ExtResource("3_k5j1i")]
+position = Vector2(-144, 184)
+resource = SubResource("Resource_2f0dl")
+
+[node name="Goblin4" parent="." instance=ExtResource("3_k5j1i")]
+position = Vector2(312, 152)
+resource = SubResource("Resource_aolje")
+
+[node name="Camera2D" type="Camera2D" parent="."]

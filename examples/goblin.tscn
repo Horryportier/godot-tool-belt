@@ -1,33 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://dda5wwbdnpyw0"]
+[gd_scene load_steps=10 format=3 uid="uid://dda5wwbdnpyw0"]
 
 [ext_resource type="Script" path="res://examples/goblin.gd" id="1_p7qbm"]
 [ext_resource type="Resource" uid="uid://cdqmqby3eqqns" path="res://examples/goblin.tres" id="2_4ddkr"]
 [ext_resource type="Texture2D" uid="uid://bdpa4cbdw0ly7" path="res://icon.svg" id="2_13l58"]
-[ext_resource type="Script" path="res://Components/health/ui/local_health_bar.gd" id="4_0usce"]
 [ext_resource type="Script" path="res://Components/health/ui/local_texture_health_bar.gd" id="4_5uoxt"]
 
-[sub_resource type="Gradient" id="Gradient_724cj"]
-offsets = PackedFloat32Array(0, 0.182692, 0.480769, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.230871, 0, 0.107997, 0.828627, 0.547091, 0.167629, 0, 0.54902, 0, 0, 0, 0)
+[sub_resource type="Gradient" id="Gradient_hm87h"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bw2j8"]
-noise_type = 4
-offset = Vector3(1000, 0, 0)
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bcssc"]
-width = 256
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wxarw"]
+gradient = SubResource("Gradient_hm87h")
+width = 160
 height = 16
-color_ramp = SubResource("Gradient_724cj")
-noise = SubResource("FastNoiseLite_bw2j8")
+use_hdr = true
 
 [sub_resource type="Gradient" id="Gradient_roncg"]
-offsets = PackedFloat32Array(0, 0.509615, 1)
+offsets = PackedFloat32Array(0.0673077, 0.346154, 1)
 colors = PackedColorArray(0.780518, 0, 0.268147, 1, 0.988667, 1, 0.32, 1, 0.232333, 1, 0.06, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_f10lf"]
 gradient = SubResource("Gradient_roncg")
-width = 256
+width = 160
 height = 16
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_loaq0"]
+radius = 64.4981
 
 [node name="Goblin" type="CharacterBody2D"]
 script = ExtResource("1_p7qbm")
@@ -36,21 +35,6 @@ resource = ExtResource("2_4ddkr")
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(0.154167, 0.5, 0.085, 1)
 texture = ExtResource("2_13l58")
-
-[node name="LocalHealthBar" type="ProgressBar" parent="."]
-offset_left = -64.0
-offset_top = -101.0
-offset_right = 66.0
-offset_bottom = -74.0
-step = 1.0
-show_percentage = false
-script = ExtResource("4_0usce")
-drag = 0.5
-tras_type = 6
-ease_type = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Dmg" type="Button" parent="."]
 offset_left = 72.0
@@ -76,16 +60,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -128.0
-offset_right = 128.0
-offset_bottom = -104.0
+offset_left = -80.0
+offset_top = -104.0
+offset_right = 80.0
+offset_bottom = -88.0
 grow_horizontal = 2
 grow_vertical = 2
 value = 100.0
-texture_over = SubResource("NoiseTexture2D_bcssc")
+texture_under = SubResource("GradientTexture2D_wxarw")
 texture_progress = SubResource("GradientTexture2D_f10lf")
 script = ExtResource("4_5uoxt")
 drag = 0.5
 tras_type = 6
 ease_type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_loaq0")

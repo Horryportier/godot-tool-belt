@@ -4,12 +4,14 @@
 [ext_resource type="Script" path="res://Components/health/health_res.gd" id="1_ekl2r"]
 
 [sub_resource type="Resource" id="Resource_eftax"]
+resource_local_to_scene = true
 script = ExtResource("1_ekl2r")
 max_hp = 60
 start_hp = 39
 debug = false
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_bu2lo")
 health = SubResource("Resource_eftax")
 level = 1
