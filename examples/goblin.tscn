@@ -1,10 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://dda5wwbdnpyw0"]
+[gd_scene load_steps=15 format=3 uid="uid://dda5wwbdnpyw0"]
 
 [ext_resource type="Script" path="res://examples/goblin.gd" id="1_p7qbm"]
 [ext_resource type="Resource" uid="uid://cdqmqby3eqqns" path="res://examples/goblin.tres" id="2_4ddkr"]
 [ext_resource type="Texture2D" uid="uid://bdpa4cbdw0ly7" path="res://icon.svg" id="2_13l58"]
+[ext_resource type="Shader" path="res://examples/goblin.gdshader" id="3_kddf1"]
 [ext_resource type="Script" path="res://Components/health/ui/local_texture_health_bar.gd" id="4_5uoxt"]
-[ext_resource type="Script" path="res://Components/Tween/tween_res.gd" id="5_dfo8c"]
+[ext_resource type="Script" path="res://Components/tween/tween_res.gd" id="5_dfo8c"]
+[ext_resource type="Script" path="res://Components/Hurtbox/hurtbox2D.gd" id="7_gqw2x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g54ih"]
+shader = ExtResource("3_kddf1")
+shader_parameter/dither = null
+shader_parameter/scale = null
 
 [sub_resource type="Gradient" id="Gradient_hm87h"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -41,6 +48,7 @@ resource = ExtResource("2_4ddkr")
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(0.154167, 0.5, 0.085, 1)
+material = SubResource("ShaderMaterial_g54ih")
 texture = ExtResource("2_13l58")
 
 [node name="Dmg" type="Button" parent="."]
@@ -81,3 +89,11 @@ tween_res = SubResource("Resource_rfexq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_loaq0")
+
+[node name="Hurtbox2D" type="Area2D" parent="."]
+script = ExtResource("7_gqw2x")
+eneble_iframes = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox2D"]
+shape = SubResource("CircleShape2D_loaq0")
+debug_color = Color(0.974108, 0, 0.429172, 0.42)

@@ -10,5 +10,4 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("select") and radar.bodies.size() > 0:
 		camera.focus_on(radar.bodies[0])
-		
-
+		radar.bodies[0].selected = !radar.bodies[0].selected

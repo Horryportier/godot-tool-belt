@@ -7,20 +7,16 @@ class_name EnemyRes
 
 @export var name: String
 
-@export var groups: Array[String]
+@export var groups: GroupRes
 
 func setup(node: CharacterBody2D):
 	health.setup()
-	setup_groups(node)
-
-func setup_groups(node: CharacterBody2D):
-	for group in groups:
-		node.add_to_group(group)
+	groups.setup(node)
 
 func print_debug_info():
 	print("name ",name)
 	print("level ",level)
-	print("groups ", groups)
+	print("groups ", groups.groups)
 
 	print("max_health ",health.max_hp)
 	print("start_health ",health.start_hp)

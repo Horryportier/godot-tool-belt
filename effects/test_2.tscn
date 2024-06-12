@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc07fmtuj58nh"]
+
+[ext_resource type="Shader" path="res://effects/test_2.gdshader" id="1_21gc5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1i3e"]
+shader = ExtResource("1_21gc5")
+shader_parameter/dither = true
+shader_parameter/scale = 9355
+
+[sub_resource type="Gradient" id="Gradient_eadv0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.0353982, 0.221239, 0.371681, 0.415929, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.786744, 0.847813, 1, 1, 0.260506, 0.260506, 0.260506, 1, 0.0594, 0.99, 0.16797, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v2x6x"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dtbdl"]
+in_3d_space = true
+color_ramp = SubResource("Gradient_eadv0")
+noise = SubResource("FastNoiseLite_v2x6x")
+
+[node name="test2" type="TextureRect"]
+material = SubResource("ShaderMaterial_p1i3e")
+offset_right = 128.0
+offset_bottom = 128.0
+texture = SubResource("NoiseTexture2D_dtbdl")
