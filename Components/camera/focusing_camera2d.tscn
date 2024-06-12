@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d33dxj3nftv1n"]
+
+[ext_resource type="Script" path="res://Components/camera/focusing_camera2d.gd" id="1_n5g51"]
+
+[node name="FocusingCamera2d" type="Camera2D"]
+script = ExtResource("1_n5g51")

@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://eimvfnfdbxj3"]
+[gd_scene load_steps=20 format=3 uid="uid://eimvfnfdbxj3"]
 
 [ext_resource type="Script" path="res://examples/mouse_radar.gd" id="1_q32aw"]
 [ext_resource type="Script" path="res://Components/radar/radar2d.gd" id="2_hj7h8"]
 [ext_resource type="PackedScene" uid="uid://dda5wwbdnpyw0" path="res://examples/goblin.tscn" id="3_k5j1i"]
 [ext_resource type="Script" path="res://Components/health/health_res.gd" id="4_bvyij"]
 [ext_resource type="Script" path="res://Components/enemy/enemy_res.gd" id="5_7fa8i"]
+[ext_resource type="Script" path="res://Components/camera/focusing_camera2d.gd" id="6_53nh8"]
+[ext_resource type="Script" path="res://Components/Tween/tween_res.gd" id="7_u0k4x"]
 
 [sub_resource type="Gradient" id="Gradient_1g0lk"]
 interpolation_mode = 1
@@ -80,6 +82,12 @@ level = 1
 name = "Goblin"
 groups = Array[String](["Enemy", "Monster", "Humanoid", "Resetable"])
 
+[sub_resource type="Resource" id="Resource_p4qu0"]
+script = ExtResource("7_u0k4x")
+duration = 1.0
+ease_type = 1
+trans_type = 11
+
 [node name="world" type="Node2D"]
 
 [node name="mouse_radar" type="Node2D" parent="."]
@@ -97,19 +105,22 @@ shape = SubResource("CircleShape2D_g4n3p")
 debug_color = Color(2.83971e-06, 0.64494, 0.270685, 0.42)
 
 [node name="Goblin" parent="." instance=ExtResource("3_k5j1i")]
-position = Vector2(208, -104)
+position = Vector2(384, -192)
 resource = SubResource("Resource_xcuxj")
 
 [node name="Goblin2" parent="." instance=ExtResource("3_k5j1i")]
-position = Vector2(-256, -72)
+position = Vector2(-448, -192)
 resource = SubResource("Resource_kehw6")
 
 [node name="Goblin3" parent="." instance=ExtResource("3_k5j1i")]
-position = Vector2(-144, 184)
+position = Vector2(-448, 192)
 resource = SubResource("Resource_2f0dl")
 
 [node name="Goblin4" parent="." instance=ExtResource("3_k5j1i")]
-position = Vector2(312, 152)
+position = Vector2(384, 192)
 resource = SubResource("Resource_aolje")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="FocusingCamera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("6_53nh8")
+tween_res = SubResource("Resource_p4qu0")

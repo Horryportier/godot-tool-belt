@@ -4,9 +4,7 @@ extends ProgressBar
 @onready var health: HealthRes = get_parent().resource.health
 
 @export var smooth: bool = true
-@export var drag: float = 0.1
-@export var tras_type: Tween.TransitionType
-@export var ease_type: Tween.EaseType
+@export var tween_res: TweenRes 
 
 func _ready():
 	value = remap(30, 0, health.max_hp, 0, 100)
@@ -21,4 +19,4 @@ func _on_hp_changed():
 
 func smooth_trans(final: int):
 	var tween = create_tween()
-	tween.tween_property(self, "value", final, drag).set_ease(ease_type).set_trans(tras_type)
+	tween.tween_property(self, "value", final, tween_res.duration).set_ease(tween_res.ease_type).set_trans(tween_res.trans_type)
