@@ -1,14 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://eimvfnfdbxj3"]
+[gd_scene load_steps=22 format=3 uid="uid://eimvfnfdbxj3"]
 
 [ext_resource type="Script" path="res://examples/mouse_radar.gd" id="1_q32aw"]
-[ext_resource type="Script" path="res://Components/radar/radar2d.gd" id="2_hj7h8"]
-[ext_resource type="Script" path="res://Components/Hitbox/hitbox.gd" id="3_jcy7r"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/radar/radar2d.gd" id="2_hj7h8"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/Hitbox/hitbox.gd" id="3_jcy7r"]
 [ext_resource type="PackedScene" uid="uid://dda5wwbdnpyw0" path="res://examples/goblin.tscn" id="3_k5j1i"]
-[ext_resource type="Script" path="res://Components/health/health_res.gd" id="4_bvyij"]
-[ext_resource type="Script" path="res://Components/group/group_res.gd" id="4_w4weh"]
-[ext_resource type="Script" path="res://Components/enemy/enemy_res.gd" id="5_7fa8i"]
-[ext_resource type="Script" path="res://Components/camera/focusing_camera2d.gd" id="6_53nh8"]
-[ext_resource type="Script" path="res://Components/tween/tween_res.gd" id="7_u0k4x"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/health/health_res.gd" id="4_bvyij"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/group/group_res.gd" id="4_w4weh"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/enemy/enemy_res.gd" id="5_7fa8i"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/camera/focusing_camera2d.gd" id="6_53nh8"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/tween/tween_res.gd" id="7_u0k4x"]
+[ext_resource type="Script" path="res://examples/ui.gd" id="10_6x7fv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4n3p"]
 radius = 16.0
@@ -125,3 +126,26 @@ resource = SubResource("Resource_tqp6i")
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("6_53nh8")
 tween_res = SubResource("Resource_p4qu0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ui" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("10_6x7fv")
+
+[node name="InstaHeal" type="Button" parent="CanvasLayer/ui"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.5
+offset_right = 33.5
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "Heal All"

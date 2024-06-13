@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EnemyRes" load_steps=6 format=3 uid="uid://cdqmqby3eqqns"]
 
-[ext_resource type="Script" path="res://Components/enemy/enemy_res.gd" id="1_bu2lo"]
-[ext_resource type="Script" path="res://Components/health/health_res.gd" id="1_ekl2r"]
-[ext_resource type="Script" path="res://Components/group/group_res.gd" id="1_gdqbl"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/enemy/enemy_res.gd" id="1_bu2lo"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/health/health_res.gd" id="1_ekl2r"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/group/group_res.gd" id="1_gdqbl"]
 
 [sub_resource type="Resource" id="Resource_0iw48"]
 script = ExtResource("1_gdqbl")

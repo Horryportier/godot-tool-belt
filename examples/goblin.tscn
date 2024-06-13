@@ -4,9 +4,9 @@
 [ext_resource type="Resource" uid="uid://cdqmqby3eqqns" path="res://examples/goblin.tres" id="2_4ddkr"]
 [ext_resource type="Texture2D" uid="uid://bdpa4cbdw0ly7" path="res://icon.svg" id="2_13l58"]
 [ext_resource type="Shader" path="res://examples/goblin.gdshader" id="3_kddf1"]
-[ext_resource type="Script" path="res://Components/health/ui/local_texture_health_bar.gd" id="4_5uoxt"]
-[ext_resource type="Script" path="res://Components/tween/tween_res.gd" id="5_dfo8c"]
-[ext_resource type="Script" path="res://Components/Hurtbox/hurtbox2D.gd" id="7_gqw2x"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/health/ui/local_texture_health_bar.gd" id="4_5uoxt"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/tween/tween_res.gd" id="5_dfo8c"]
+[ext_resource type="Script" path="res://addons/godottoolbelt/Components/Hurtbox/hurtbox2D.gd" id="7_gqw2x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g54ih"]
 shader = ExtResource("3_kddf1")
