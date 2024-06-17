@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjaq2k5kg2c4w"]
+
+[ext_resource type="Shader" uid="uid://cnekpgnp4l8nv" path="res://assets/ring1.tres" id="1_0o1ep"]
+[ext_resource type="Texture2D" uid="uid://ccr6f75s32402" path="res://assets/ring1.png" id="2_pvuen"]
+[ext_resource type="Shader" uid="uid://bhv0lcdi36qwb" path="res://test/healparticle.tres" id="3_2r8rs"]
+[ext_resource type="Texture2D" uid="uid://bo6k0lyahmfi6" path="res://assets/plus.png" id="4_b0s6x"]
+[ext_resource type="Texture2D" uid="uid://b6mwhwla32c6i" path="res://assets/star.png" id="5_fol7e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vucpj"]
+radius = 200.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j1bya"]
+shader = ExtResource("1_0o1ep")
+shader_parameter/ColorParameter = Color(0.3, 10, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48vn7"]
+resource_local_to_scene = true
+shader = ExtResource("3_2r8rs")
+shader_parameter/Vector2Parameter = Vector2(100, -1000)
+shader_parameter/Vector2Parameter2 = Vector2(-100, -100)
+
+[node name="HealArea" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_vucpj")
+
+[node name="effect" type="Node2D" parent="."]
+
+[node name="Ring1" type="Sprite2D" parent="effect"]
+material = SubResource("ShaderMaterial_j1bya")
+scale = Vector2(0.92, 0.92)
+texture = ExtResource("2_pvuen")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="effect"]
+scale = Vector2(0.1, 0.1)
+process_material = SubResource("ShaderMaterial_48vn7")
+texture = ExtResource("4_b0s6x")
+collision_base_size = 0.0
+trail_lifetime = 3.64
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="effect"]
+scale = Vector2(0.1, 0.1)
+process_material = SubResource("ShaderMaterial_48vn7")
+texture = ExtResource("5_fol7e")
+collision_base_size = 0.0
+trail_lifetime = 3.64

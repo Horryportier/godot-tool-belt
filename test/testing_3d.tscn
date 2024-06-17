@@ -1,0 +1,139 @@
+[gd_scene load_steps=15 format=3 uid="uid://dxlg0ohlx4cbt"]
+
+[ext_resource type="Shader" uid="uid://33684tchw8bw" path="res://test/barier.tres" id="1_vmve0"]
+[ext_resource type="PackedScene" uid="uid://c0re1tm86e00l" path="res://effects/flame.tscn" id="2_8fqx7"]
+[ext_resource type="Script" path="res://free_look_camera.gd" id="2_c2h57"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rdkv1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b1t2t"]
+render_priority = 0
+shader = ExtResource("1_vmve0")
+shader_parameter/ScrollSpeed = 0.2
+shader_parameter/Color = Color(0.9, 0.1, 10, 1)
+shader_parameter/FresnelPower = 3.18
+
+[sub_resource type="Animation" id="Animation_8tsj7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:shader_parameter/Color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.9, 0.1, 10, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0tfjc"]
+resource_name = "rainbow"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:shader_parameter/Color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 2.14355, 1),
+"update": 0,
+"values": [Color(0.9, 0.1, 10, 1), Color(10, 0.1, 0.9, 1), Color(0.1, 10, 0.9, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnimu"]
+_data = {
+"RESET": SubResource("Animation_8tsj7"),
+"rainbow": SubResource("Animation_0tfjc")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d1rkx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4jf74"]
+render_priority = 0
+shader = ExtResource("1_vmve0")
+shader_parameter/ScrollSpeed = 0.2
+shader_parameter/Color = Color(0.9, 0.1, 10, 1)
+shader_parameter/FresnelPower = 2.1
+
+[sub_resource type="Environment" id="Environment_74eif"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.22
+fog_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6eenc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lrds"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p6sos"]
+
+[node name="Testing3D" type="Node3D"]
+metadata/movie_file = "res://video/test_vfx1.avi"
+
+[node name="effects" type="Node3D" parent="."]
+
+[node name="Barier" type="Node3D" parent="effects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.097, 0.7, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="effects/Barier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0887734, 0)
+mesh = SubResource("SphereMesh_rdkv1")
+surface_material_override/0 = SubResource("ShaderMaterial_b1t2t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="effects/Barier"]
+libraries = {
+"": SubResource("AnimationLibrary_bnimu")
+}
+autoplay = "rainbow"
+
+[node name="Barier2" type="Node3D" parent="effects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.097, 0.7, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="effects/Barier2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.16449, -0.62903, 0)
+mesh = SubResource("PlaneMesh_d1rkx")
+surface_material_override/0 = SubResource("ShaderMaterial_4jf74")
+
+[node name="Fire" parent="effects" instance=ExtResource("2_8fqx7")]
+flame_color = Color(15.603, 1.02, 0, 1)
+
+[node name="Fire2" parent="effects" instance=ExtResource("2_8fqx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70882, 0.60034, 3)
+flame_color = Color(1.2, 10, 0.4, 1)
+
+[node name="Fire3" parent="effects" instance=ExtResource("2_8fqx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70882, 0.60034, -1)
+flame_color = Color(0.6, 2, 10, 1)
+sparks_color = Color(100, 1, 1, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_74eif")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1, 2)
+script = ExtResource("2_c2h57")
+boost_speed_multiplier = 2.0
+max_speed = 500.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.38485, 0, 0, 0, 1, 0, 0, 0, 9.73357, 0, 0, 0)
+mesh = SubResource("PlaneMesh_6eenc")
+surface_material_override/0 = SubResource("StandardMaterial3D_6lrds")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.731735, 0.68159, 0, -0.68159, 0.731735, 0.149765, 4.73813, 1.43034)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.778429, 0.627732, 0, -0.627732, -0.778429, 0.29953, 9.18009, -2.59334)
+light_color = Color(1, 0.986833, 0.21, 1)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 4.81984, 0, 0, 0, 22.6833, 5.21112, 2.15188, -0.0848074)
+mesh = SubResource("BoxMesh_p6sos")
+surface_material_override/0 = SubResource("StandardMaterial3D_6lrds")

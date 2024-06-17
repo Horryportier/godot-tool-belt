@@ -23,7 +23,8 @@ enabled=PackedStringArray("res://addons/godottoolbelt/plugin.cfg")
 folder_colors={
 "res://addons/godottoolbelt/Components/": "yellow",
 "res://effects/": "purple",
-"res://examples/": "gray"
+"res://examples/": "gray",
+"res://test/": "pink"
 }
 
 [input]
