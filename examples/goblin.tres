@@ -22,3 +22,4 @@ health = SubResource("Resource_eftax")
 level = 1
 name = "Goblin"
 groups = SubResource("Resource_0iw48")
+params = {}

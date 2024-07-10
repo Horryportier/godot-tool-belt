@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0re1tm86e00l"]
+[gd_scene load_steps=24 format=3 uid="uid://c0re1tm86e00l"]
 
 [ext_resource type="Shader" uid="uid://cgrgywthsk3un" path="res://test/static_flame.tres" id="1_ixc2g"]
 [ext_resource type="Script" path="res://effects/flame.gd" id="1_w0fja"]
 [ext_resource type="Texture2D" uid="uid://kq55ubfikwf8" path="res://assets/flame.png" id="2_1jm1r"]
-[ext_resource type="Texture2D" uid="uid://dtue57024n2b8" path="res://assets/point.png" id="3_fplt8"]
+[ext_resource type="Texture2D" uid="uid://dtue57024n2b8" path="res://assets/point.png" id="4_s708b"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_58s2q"]
 noise_type = 2
@@ -12,13 +12,18 @@ noise_type = 2
 noise = SubResource("FastNoiseLite_58s2q")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_by0if"]
-render_priority = 0
+render_priority = -100
 shader = ExtResource("1_ixc2g")
 shader_parameter/DisolveTiling = Vector2(0.25, 0.2)
 shader_parameter/DisolveSpeed = Vector2(0, 0.023)
 shader_parameter/DisolveAmount = 0.934
 shader_parameter/MainTexture = ExtResource("2_1jm1r")
 shader_parameter/DisolveTexture = SubResource("NoiseTexture2D_jqo74")
+
+[sub_resource type="Gradient" id="Gradient_5hkka"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jyh1u"]
+gradient = SubResource("Gradient_5hkka")
 
 [sub_resource type="Curve" id="Curve_fvici"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.26875, 1), 0.0, 0.0, 0, 0, Vector2(0.78125, 0.411321), -1.38644, -1.38644, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -40,6 +45,8 @@ damping_max = 1.0
 scale_min = 0.75
 scale_max = 1.25
 scale_curve = SubResource("CurveTexture_etjmj")
+color = Color(10, 1.2, 0, 1)
+color_ramp = SubResource("GradientTexture1D_jyh1u")
 turbulence_enabled = true
 turbulence_noise_strength = 0.1
 turbulence_noise_scale = 5.0
@@ -55,6 +62,11 @@ shader_parameter/DisolveAmount = 0.671
 shader_parameter/MainTexture = ExtResource("2_1jm1r")
 shader_parameter/DisolveTexture = SubResource("NoiseTexture2D_jqo74")
 
+[sub_resource type="Gradient" id="Gradient_vgcx6"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jl4jg"]
+gradient = SubResource("Gradient_vgcx6")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qia4a"]
 resource_local_to_scene = true
 emission_shape_scale = Vector3(0.3, 0.3, 0.3)
@@ -67,22 +79,37 @@ damping_min = 0.5
 damping_max = 1.0
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_etjmj")
+color = Color(0, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_jl4jg")
 turbulence_enabled = true
 turbulence_noise_strength = 0.1
 turbulence_noise_scale = 5.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6kvbu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3aou0"]
 render_priority = 0
 shader = ExtResource("1_ixc2g")
 shader_parameter/DisolveTiling = Vector2(0.25, 0.2)
-shader_parameter/DisolveSpeed = Vector2(0, 0.023)
-shader_parameter/DisolveAmount = 0.934
-shader_parameter/MainTexture = ExtResource("3_fplt8")
+shader_parameter/DisolveSpeed = Vector2(0, -0.097)
+shader_parameter/DisolveAmount = 0.671
+shader_parameter/MainTexture = ExtResource("4_s708b")
 shader_parameter/DisolveTexture = SubResource("NoiseTexture2D_jqo74")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5jh8a"]
+[sub_resource type="Gradient" id="Gradient_wmf7c"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xccfb"]
+gradient = SubResource("Gradient_wmf7c")
+
+[sub_resource type="Curve" id="Curve_v8xku"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.26875, 1), 0.0, 0.0, 0, 0, Vector2(0.78125, 0.411321), -1.38644, -1.38644, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_2rs2j"]
+curve = SubResource("Curve_v8xku")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0gb5l"]
 resource_local_to_scene = true
-emission_shape_scale = Vector3(0.2, 0.2, 0.2)
+lifetime_randomness = 0.5
+emission_shape_scale = Vector3(0.3, 0.3, 0.3)
 emission_shape = 1
 emission_sphere_radius = 1.0
 angle_min = -360.0
@@ -92,16 +119,17 @@ damping_min = 0.5
 damping_max = 1.0
 scale_min = 0.01
 scale_max = 0.1
-scale_curve = SubResource("CurveTexture_etjmj")
+scale_curve = SubResource("CurveTexture_2rs2j")
+color = Color(10, 2, 0, 1)
+color_ramp = SubResource("GradientTexture1D_xccfb")
 turbulence_enabled = true
 turbulence_noise_strength = 0.1
 turbulence_noise_scale = 5.0
 
 [node name="Fire" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70882, 0.60034, 1)
 script = ExtResource("1_w0fja")
-flame_color = Color(0, 0, 0, 1)
-sparks_color = Color(0, 0, 0, 1)
+flame_color = Color(10, 1.2, 0, 1)
+sparks_color = Color(10, 2, 0, 1)
 
 [node name="Flame" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.303412, 0)
@@ -124,8 +152,10 @@ draw_pass_1 = SubResource("QuadMesh_vvdir")
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.606824, 0)
-material_override = SubResource("ShaderMaterial_6kvbu")
-amount = 40
+sorting_offset = -1.0
+material_override = SubResource("ShaderMaterial_3aou0")
+amount = 20
 lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_5jh8a")
+visibility_aabb = AABB(-1.53067, -1.08823, -1.58982, 3.15732, 4.45436, 3.27526)
+process_material = SubResource("ParticleProcessMaterial_0gb5l")
 draw_pass_1 = SubResource("QuadMesh_vvdir")

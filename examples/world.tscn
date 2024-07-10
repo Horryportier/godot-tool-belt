@@ -32,6 +32,7 @@ health = SubResource("Resource_y1cir")
 level = 1
 name = "Goblin"
 groups = SubResource("Resource_0iw48")
+params = {}
 
 [sub_resource type="Resource" id="Resource_ufxk0"]
 resource_local_to_scene = true
@@ -47,6 +48,7 @@ health = SubResource("Resource_ufxk0")
 level = 1
 name = "Goblin"
 groups = SubResource("Resource_0iw48")
+params = {}
 
 [sub_resource type="Resource" id="Resource_hrce2"]
 resource_local_to_scene = true
@@ -62,6 +64,7 @@ health = SubResource("Resource_hrce2")
 level = 1
 name = "Goblin"
 groups = SubResource("Resource_0iw48")
+params = {}
 
 [sub_resource type="Resource" id="Resource_h0lnw"]
 resource_local_to_scene = true
@@ -77,6 +80,7 @@ health = SubResource("Resource_h0lnw")
 level = 1
 name = "Goblin"
 groups = SubResource("Resource_0iw48")
+params = {}
 
 [sub_resource type="Resource" id="Resource_p4qu0"]
 script = ExtResource("7_u0k4x")
@@ -98,6 +102,7 @@ shape = SubResource("CircleShape2D_g4n3p")
 debug_color = Color(2.83971e-06, 0.64494, 0.270685, 0.42)
 
 [node name="Hitbox2D" type="Area2D" parent="mouse_radar/Radar2D"]
+collision_layer = 2
 script = ExtResource("3_jcy7r")
 damage_repeat = true
 

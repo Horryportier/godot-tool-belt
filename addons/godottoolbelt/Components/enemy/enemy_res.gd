@@ -1,17 +1,5 @@
-extends Resource
+extends GameCharacterRes
 class_name EnemyRes
-
-@export var health: HealthRes
-
-@export var level: int = 1
-
-@export var name: String
-
-@export var groups: GroupRes
-
-func setup(node: CharacterBody2D):
-	health.setup()
-	groups.setup(node)
 
 func print_debug_info():
 	print("name ",name)

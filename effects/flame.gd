@@ -12,4 +12,4 @@ extends Node3D
 func _process(_delta):
 	smoke.process_material.color = smoke_color
 	flame.process_material.color = flame_color
-	smoke.process_material.color = smoke_color
+	sparks.process_material.color = sparks_color

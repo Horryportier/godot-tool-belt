@@ -91,6 +91,7 @@ tween_res = SubResource("Resource_rfexq")
 shape = SubResource("CircleShape2D_loaq0")
 
 [node name="Hurtbox2D" type="Area2D" parent="."]
+collision_mask = 0
 script = ExtResource("7_gqw2x")
 eneble_iframes = true
 
